@@ -6,27 +6,27 @@ module.exports = {
 
     async getlist(req, res){
 
-        const players = await Player.find({main:false})
+        const Allplayers = await Player.find({main:false})
 
         const numberPlayers =  await Player.find({main:false}).countDocuments();
         console.log(numberPlayers)
         
-        const jogadores = players
-        let lista = []
+        const players = Allplayers
+        let list = []
         const name = "Lista de Reservas"
         
         for(let i=0; i < numberPlayers; i++){
-                lista.push(jogadores[i].name);
+                list.push(players[i].name);
         }
-        const playersArrays = parseStringAsArray(lista)
+        const playersArrays = parseStringAsArray(list)
 
         await Team.create({
             name,
             players : playersArrays
         })
 
-        console.log(lista)
-        return res.json(players)
+        console.log(list)
+        return res.json(Allplayers)
 
 
     }
