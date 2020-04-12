@@ -6,58 +6,82 @@ module.exports = {
 
     async getlist(req, res){
 
-        const players = await Player.find({main:true}).sort({"number":1})
+        const Allplayers = await Player.find({main:true}).sort({"number":1})
         const numberPlayers =  await Player.find({main:true}).countDocuments();
         
-        const jogadores = players
-        let lista = []
-        let formouEquipe = false;
-        let j = 0
-        // let random = Math.floor(Math.random()*(listAnimalsName.length))
+        const playes = Allplayers
+        let list = []
+        let FormTeam = false;
+        let j = 0 // To number the teams
 
-        for(let i=0; i < numberPlayers; i++){
-            if(i % 7 == 0 && formouEquipe == true){
-                let nomeTime = `Equipe ${(j+=1)}`
-                // let nomeTime = listAnimalsName[random]
-                let name = nomeTime
-                // listAnimalsName.pop(random)
-                // console.log(listAnimalsName.length)
-                const playersArrays = parseStringAsArray(lista)
-                time = await Team.create({
-                    name,
+        if(numberPlayers<=30){
+            // Create team with 6 players
+            for(let i=0; i < numberPlayers; i++){
+                if(i % 6 == 0 && FormTeam == true){
+                    let teamName = `Equipe ${(j+=1)}`
+                    const playersArrays = parseStringAsArray(list)
+                    team = await Team.create({
+                        name : teamName,
+                        players : playersArrays
+                    })
+                    console.log(teamName)
+                    list = []
+                    list.push(playes[i].name);
+                }else{
+                    list.push(playes[i].name);
+                    FormTeam = true;
+                }
+                console.log(playes[i].name)
+            }
+    
+            if(list.length > 0){
+                let teamName = `Equipe ${(j+=1)}`
+                const playersArrays = parseStringAsArray(list)
+                team = await Team.create({
+                    name: teamName,
                     players : playersArrays
                 })
-                console.log(nomeTime)
-                lista = []
-                lista.push(jogadores[i].name);
-                // random = Math.floor(Math.random()* (listAnimalsName.length))
-            }else{
-                lista.push(jogadores[i].name);
-                formouEquipe = true;
+                console.log(teamName)
+                list = []
             }
-            
-            console.log(jogadores[i].name)
+    
+            console.log(list)
+        }else{
+            // Create team with 7 players
+            for(let i=0; i < numberPlayers; i++){
+                if(i % 7 == 0 && FormTeam == true){
+                    let teamName = `Equipe ${(j+=1)}`
+                    const playersArrays = parseStringAsArray(list)
+                    team = await Team.create({
+                        name: teamName,
+                        players : playersArrays
+                    })
+                    console.log(teamName)
+                    list = []
+                    list.push(playes[i].name);
+                }else{
+                    list.push(playes[i].name);
+                    FormTeam = true;
+                }
+                
+                console.log(playes[i].name)
+            }
+    
+            if(list.length > 0){
+                let teamName = `Equipe ${(j+=1)}`
+                const playersArrays = parseStringAsArray(list)
+                team = await Team.create({
+                    name: teamName,
+                    players : playersArrays
+                })
+                console.log(teamName)
+                list = []
+            }
+    
+            console.log(list)
         }
 
-        if(lista.length == 7){
-            let nomeTime = `Equipe ${(j+=1)}`
-            // let nomeTime = listAnimalsName[random]
-            let name = nomeTime
-            // listAnimalsName.pop(random)
-            // console.log(listAnimalsName.length)
-            const playersArrays = parseStringAsArray(lista)
-            time = await Team.create({
-                name,
-                players : playersArrays
-            })
-            console.log(nomeTime)
-            lista = []
-            // random = Math.floor(Math.random()* (listAnimalsName.length))
-        }
-
-        console.log(lista)
-
-        return res.json(players)
+        return res.json(Allplayers)
 
 
     },
