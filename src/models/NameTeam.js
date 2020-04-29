@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const NameTeamSchema = new mongoose.Schema({
-    name : String
-})
+  name: String,
+});
 
-module.exports = mongoose.model('NameTeam', NameTeamSchema)
+module.exports = mongoose.model('NameTeam', NameTeamSchema);

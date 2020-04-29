@@ -1,16 +1,15 @@
-const NameTeam = require('../models/NameTeam')
+const NameTeam = require('../models/NameTeam');
 
 module.exports = {
 
-    async create(req, res){
+  async create(req, res) {
+    const { name } = req.body;
 
-        const {name} = req.body;
+    const nameTeam = await NameTeam.create({
+      name,
+    });
 
-        const nameTeam = await NameTeam.create({
-            name
-        })
+    return res.json(nameTeam);
+  },
 
-        return res.json(nameTeam)
-    }
-
-}
+};
