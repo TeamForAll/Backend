@@ -6,5 +6,4 @@ const PlayerSchema = new mongoose.Schema({
   main: Boolean,
 });
 
-
 module.exports = mongoose.model('Player', PlayerSchema);

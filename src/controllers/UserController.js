@@ -2,7 +2,6 @@ const Player = require('../models/Player');
 const generateNumber = require('../utils/generateNumber');
 
 module.exports = {
-
   async store(req, res) {
     const numberPlayers = await Player.countDocuments();
     const { name } = req.body;

@@ -3,7 +3,6 @@ const Team = require('../models/Team');
 const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
-
   async getlist(req, res) {
     const Allplayers = await Player.find({ main: false });
 
@@ -27,6 +26,4 @@ module.exports = {
     console.log(list);
     return res.json(Allplayers);
   },
-
-
 };

@@ -1,7 +1,6 @@
 const NameTeam = require('../models/NameTeam');
 
 module.exports = {
-
   async create(req, res) {
     const { name } = req.body;
 
@@ -11,5 +10,4 @@ module.exports = {
 
     return res.json(nameTeam);
   },
-
 };

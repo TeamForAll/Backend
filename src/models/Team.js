@@ -5,5 +5,4 @@ const TeamSchama = new mongoose.Schema({
   players: [String],
 });
 
-
 module.exports = mongoose.model('Team', TeamSchama);

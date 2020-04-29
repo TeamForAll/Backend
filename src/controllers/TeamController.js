@@ -3,7 +3,6 @@ const Team = require('../models/Team');
 const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
-
   async getlist(req, res) {
     const Allplayers = await Player.find({ main: true }).sort({ number: 1 });
     const numberPlayers = await Player.find({ main: true }).countDocuments();
@@ -88,6 +87,4 @@ module.exports = {
 
     return res.json(Teams);
   },
-
-
 };
