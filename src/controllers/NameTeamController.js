@@ -1,13 +1,19 @@
 const NameTeam = require('../models/NameTeam');
 
 module.exports = {
-  async create(req, res) {
-    const { name } = req.body;
+  async create(request, response) {
+    const { name } = request.body;
 
     const nameTeam = await NameTeam.create({
       name,
     });
 
-    return res.json(nameTeam);
+    return response.json(nameTeam);
+  },
+
+  async index(request, response) {
+    const nameofTeams = await NameTeam.find();
+
+    return response.json(nameofTeams);
   },
 };

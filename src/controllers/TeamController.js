@@ -3,7 +3,7 @@ const Team = require('../models/Team');
 const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
-  async getlist(req, res) {
+  async createlist(request, response) {
     const Allplayers = await Player.find({ main: true }).sort({ number: 1 });
     const numberPlayers = await Player.find({ main: true }).countDocuments();
 
@@ -21,6 +21,7 @@ module.exports = {
           await Team.create({
             name: teamName,
             players: playersArrays,
+            expireAt: Date.now(),
           });
           console.log(teamName);
           list = [];
@@ -38,6 +39,7 @@ module.exports = {
         await Team.create({
           name: teamName,
           players: playersArrays,
+          expireAt: Date.now(),
         });
         console.log(teamName);
         list = [];
@@ -53,6 +55,7 @@ module.exports = {
           await Team.create({
             name: teamName,
             players: playersArrays,
+            expireAt: Date.now(),
           });
           console.log(teamName);
           list = [];
@@ -71,6 +74,7 @@ module.exports = {
         await Team.create({
           name: teamName,
           players: playersArrays,
+          expireAt: Date.now(),
         });
         console.log(teamName);
         list = [];
@@ -79,12 +83,12 @@ module.exports = {
       console.log(list);
     }
 
-    return res.json(Allplayers);
+    return response.json(Allplayers);
   },
 
-  async index(req, res) {
+  async index(request, response) {
     const Teams = await Team.find();
 
-    return res.json(Teams);
+    return response.json(Teams);
   },
 };
