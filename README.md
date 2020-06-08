@@ -46,5 +46,5 @@ Recover reserve list players
 
 #### Data
 
-all the data in mongoDB expires at 00:00:00 hours
+all the players and teams data in mongoDB expires at 00:00:00 hours
 
