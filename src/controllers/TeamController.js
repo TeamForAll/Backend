@@ -15,7 +15,7 @@ module.exports = {
     if (numberPlayers <= 30) {
       // Create team with 6 players
       for (let i = 0; i < numberPlayers; i += 1) {
-        if (i % 6 === 0 && FormTeam === true) {
+        if (i % 2 === 0 && FormTeam === true) {
           const teamName = `Equipe ${(j += 1)}`;
           const playersArrays = parseStringAsArray(list);
           await Team.create({
